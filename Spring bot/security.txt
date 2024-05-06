@@ -1,0 +1,127 @@
+Spring boot security
+====================
+common interview Questions
+security
+How can i implement security to my web/mobile 
+application so that there won't be
+any security in my application?
+
+Passwords
+How to store password,validate.them ecde 
+,decode them using industry standard 
+encrypption algorithmm
+?
+
+User& Roles?
+
+
+
+Multiple login
+
+
+fine granted security
+how can implement security ar each level of
+ my application using authorization rules
+
+CSRF or CORS
+what is CSRF attacked and CORS restriction how to 
+overcome them
+
+JWT& OAUTH2
+what is jwt and oAuth how can protecct my web 
+application using them?
+
+preventing attacks
+how to prevent security attacks like
+brute force stealing of data session fixation
+
+
+-----------------------------------------------------------
+Agenda
+=====
+Spring security
+authenication & authorization
+password management
+global method security
+Oauth2,CSRF,CORs,JWT
+-----------------------------------------------------
+what is security and why?
+
+what is security?
+security protecting your data and business logic 
+inside your web application.
+
+security is non functional requirement
+security is very important similar to scalablity,
+performance and availablity no client will specifically 
+asks that i need security
+
+secuirty from Dev phase
+security should be considered right from development 
+phase itself along with business logic
+
+Different types of seccuirty
+security for web application will be implmented in
+different ways like using firwells,https,ssl,authenication
+authorization etc.
+
+why security important
+security doesnt mean only loosing data or money but
+also brand and trust from your user which you have
+ built over years
+
+Avoiding most common attacks
+using security we should also avoid most common security attacks
+like CSRF,BrokenAuthenication inside our application.
+
+
+---------------------------------------------------------
+Authenication
+
+>verfiy user crediential
+
+>user login details
+
+>401 error->unauthorize
+
+>prove identity
+
+
+authorization
+
+>user  authorities are checked
+for accessing the resource
+
+>it need user privilege or roles
+
+>403 error->forbiden
+
+>once loggedinto application ,my roles ,authorities 
+decide what kind action i can do
+
+--------------------------------------------------------
+SpringBoot-Secured-Rest-Api
+Dependecies
+Spring web
+spring security->we can implement authenication 
+                 and authorization
+                 and customize security
+
+----------------------------------------------------
+
+Spring security executation flow
+user enered credentials-->Authenication filter-->Authenication
+				|
+                           Authenication manager
+				|
+				Authenication provider
+				|
+				userDetailService passwod encodeer
+
+
+
+
+
+
+
+

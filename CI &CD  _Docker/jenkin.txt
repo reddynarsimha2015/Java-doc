@@ -1,0 +1,263 @@
+Jenkin
+what and why jenkin
+build and deployment process
+challenges with manau process
+CICD
+pipeline creation
+conclusion
+--------------------------------------
+Build and deloyment process
+===========================
+Development------------------>github
+
+1)take latest source code github
+2)compile project source code
+3)execute unit test case
+4)pakage the application(jar/war)
+5)build docker image
+6)create docker container
+
+challenges in manual process
+==============================
+every day we need to deploy latest code
+deploy code in multiple environments(dev,SIT,UAT,preProd,prod)
+Takes lot of time
+repeat work
+error prone-  mistake mnaul work 
+
+To avoid all this problem we going to use jenkin
+Jenkin
+======
+Jenkin is free & open source software
+jenkin developed using java language
+jenkin is used to automate build & deployment process
+using jenkin we can implement CICD
+
+	 push coe		clone		   build
+developer----------->git hub----------->jenkins--------------------->maven
+					|build image
+					|	     deploy
+					docker------------------->container
+
+1)jenkin server setup in linux VM
+https://github.com/ashokitschool/DevOps-Documents/blob/main/04-Jenkins-Docker-Project.md
+
+
+Project Setup using below tools
+Maven
+Git Hub
+Jenkins
+Docker
+----------------------------------
+Step-1 : Jenkins Server Setup in Linux VM
+Create Ubuntu VM using AWS EC2 (t2.medium)
+Enable 8080 Port Number in Security Group Inbound Rules
+---------------------------------------------------
+Connect to VM using MobaXterm
+Install Java
+sudo apt update
+sudo apt install fontconfig openjdk-17-jre
+java -version
+---------------------------------------------------
+Install Jenkins
+================
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+------------------------------------------------------
+Start Jenkins
+=============
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+------------------------------
+Verify Jenkins
+==============
+sudo systemctl status jenkins
+-------------------------------------------
+Access jenkins server in browser using VM public ip
+http://public-ip:8080/
+---------------------------------------------------------------------------------
+Copy jenkins admin pwd
+========================
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+--------------------------------------------------------------------------------
+Create Admin Account & Install Required Plugins in Jenkins
+========================================================
+ynbr-job1-->select pipeline
+Descrition-this is my first jenkin pipeline
+script-plain engish
+helloworld-->select
+jenkin job created
+************************************
+script->
+pipeline{
+agent any 
+stages{
+stage('Git Clone'){
+steps{
+git 'url'
+}
+}
+stage('mvn build'){
+steps{
+sh 'mvn clean package'
+}
+}
+}
+}
+when build -->we get error Maven not installed in jenkein
+Step-2 : Configure Maven as Global Tool in Jenkins
+--------------------------------------------------
+Manage Jenkins -> Tools -> Maven Installation -> Add maven
+Name-M3
+version-3.9.6
+build now -->now failed
+ 
+where maven avaiable pipeline dont know
+pipeline{
+agent any 
+tools{
+maven 'M3'
+}
+stages{
+stage('Git Clone'){
+steps{
+git 'url'
+}
+}
+stage('mvn build'){
+steps{
+sh 'mvn clean package'
+}
+}
+}
+}
+apply and save
+build now
+Now maven tool also success.
+====================================================
+Docker  script
+==============
+pipeline{
+agent any 
+tools{
+maven 'M3'
+}
+stages{
+stage('Git Clone'){
+steps{
+git 'url'
+}
+}
+stage('mvn build'){
+steps{
+sh 'mvn clean package'
+}
+}
+stage('Docker image'){
+steps{
+sh 'docker build -t yntbr .'
+}
+}
+}
+Build now-failed-->docker not installed
+## Step-3 : Setup Docker in Jenkins ##
+*************************************
+curl -fsSL get.docker.com | /bin/bash
+sudo usermod -aG docker jenkins
+sudo usermod -aG docker ubuntu
+sudo systemctl restart jenkins
+sudo docker version
+---
+exit
+connect back
+docker images
+restart jenkin server->url:8080/restart
+docker image also build now->succcess
+container not avaible
+pipeline{
+agent any 
+tools{
+maven 'M3'
+}
+stages{
+stage('Git Clone'){
+steps{
+git 'url'
+}
+}
+stage('mvn build'){
+steps{
+sh 'mvn clean package'
+}
+}
+stage('Docker image'){
+steps{
+sh 'docker build -t yntbr .'
+}
+}
+stage('Deployment'){
+steps{
+sh 'docker stop yntbrc'
+sh 'docker rm yntbrc'
+sh 'docker run -d -p 9090:8080 --name yntbrc yntbr'
+}
+}
+}
+save and apply
+Build now-->success
+access application 9090 port number
+9090 enable -->security setting
+
+------------------------------------------------
+Step - 4 : Create Jenkins Job
+
+CREATE JENKIN JOB
+yntbr-job->pipeline->desiption
+script->
+pipeline{
+agent any 
+stages{
+stage('Git Clone'){
+steps{
+git 'url'
+}
+}
+stage('mvn build'){
+steps{
+sh 'mvn clean package'
+}
+}
+
+stage('docker image'){
+steps{
+sh 'docker build -t img .'
+}
+}
+stage('deployment'){
+steps{
+sh 'docker run -d -p 9090:8080 img'
+}
+}
+}
+}
+	
+-------------------------------------------------
+
+
+Stage-1 : Clone Git Repo
+Stage-2 : Maven Build
+Stage-3 : Create Docker Image
+Stage-4 : Create Docker Container
+Step - 5 : Trigger Jenkins Job
+Step - 6 : Enable host port in security group inbound rules
+Step - 7 : Access Application in Browser
+We should be able to access our application
+URL : http://public-ip:port/
+
+We are done with our Setup
+Step - 8 : After your practise, delete resources we have used in AWS Cloud to avoid billing

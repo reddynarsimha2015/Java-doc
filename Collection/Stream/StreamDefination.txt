@@ -1,0 +1,19 @@
+Stream
+=======
+A Stream in Java can be defined as a sequence of elements from
+a source.The source of elements here refers to a Collection or
+Array
+
+Streams can be used for filtering, collecting, printing,
+and converting from one data structure to another, etc. 
+
+Note: 
+If we want to represent a group of objects as a single entity 
+then we should go for collection.
+But if we want to process objects from the collection
+then we should go for streams
+
+Streams are present in java’s utility package named 
+java.util.stream
+
+

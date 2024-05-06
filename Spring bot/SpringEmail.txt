@@ -1,0 +1,38 @@
+Email throwght spring boot app
+Java MailSender
+====================
+sb PROOVIES ABILITY TO send email via SMTP USING JAVA MAIL LIBRARY.
+
+spring-boot-stater-mail
+
+
+web 
+javamail sender
+
+
+
+configuration mail setting in application.properties
+spring.mail.host=smtp.gmail.com
+spring.mailport=587
+spring.mailusernamae=
+springmail.password=
+spring.mail.propertis.mail.smtp.auth=true
+spring..mail.properties.mail.smtp..starttls.enabled=true
+
+
+classs SendEmailService
+{
+JavaMailSender sender;
+@Value($(spring.mail.userName)")
+fromMil
+public void sendMail(recipt,body,subject){
+SimpleMailMessage object
+setFrom(
+setto(
+setText(body)
+sender.send(simpleobject):
+}
+
+}
+-------------------------------------------------------
+

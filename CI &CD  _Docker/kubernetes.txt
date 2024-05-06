@@ -1,0 +1,124 @@
+Kubernetes
+----------
+K8s is  an open source orchestration platform-managing docker container of u application->container->where application deployment happen
+K8s used to manage containers
+K8s developed in Gogle & CNCF
+kubernate is framework to handle container related tasks (managing complex task of deploying ,scaling and operating applications in containers)
+application 
+				ecommerce portal
+
+   product  order  customer payment	 cart service  wishlistservice
+
+every service we need to create docker container
+create container,delete container ,(scale up)increase,(scale down)descres complete manage take care by kubernate.
+
+
+Advantage
+----------
+container orchestration-manage container
+scalablitity-increase /descrese container based demand
+self healing-any container is damage.to resolve problem kubernetes.kubernate replace with another container
+load balance-application run multiple container-kubernate take load -distribute load to all container
+----------------------------------------------------------------------------------------
+K8S Architecture
+================
+K8S work based cluster architecture
+=cluster-group servers'
+
+control plane/master node-manage everything  in kubernate (task give to control plane)-master node
+  1)api server
+  2)scheduer
+  3)conrollermanager
+  etcd
+
+worker Nodes-perform task based instruction
+POD
+container
+docker engine
+kublet
+kube proxy
+
+To communicate with control plane 
+UI-web dashboard
+CLI-kubectl-cLu is used to communicate with control plane
+
+-----------------------------------------------------------------------
+component
+==========
+Api server will recive income request (deploy application,increse scale)  and it will store request into ETCD Database
+
+etcd-stores request infromation 
+
+scheduler-pending task in ETCD  and it will assign to worker
+
+schedular will get avaiable worker nodes information by using kubelet
+
+kubelet is called as worker node agent
+
+kube -proxy  provies network for cluster communiction
+
+
+POD is smallest builing block that we run in kubernetes cluster .
+
+POD represent runtime instance of our application
+
+notein k8s, our project will executed as pOD. inside pod containers will created
+
+cntroller-manager-will monitor all k8s resourcefunctinality
+
+----------------------------------------------------------------------------------
+Kubernetes cluster setup
+we set up in multiple ways
+self manage k8s cluster
+mini kube(single node cluster)
+kubeadm(multi cluster
+
+managed k8S cluster
+AWS EKS
+Azure Aks
+gcp gke
+ibm ike
+
+
+provider manager cluster
+========================
+no need to install every thing.
+
+launh instance
+eksHostVM
+ubuntu-
+key-pair
+eks
+ALLow SSH
+
+
+opengit bash
+-------------------
+chmod 400 "eks.pem'
+connet ec2 instance
+ssh -i "eks.pem " 
+yes
+clear
+whoami
+kubectl install
+AWScli  install
+install eksctl
+IAM
+-------------------------------------------------
+http://github.com/ashokitschool/DevOps-Documents/blob/main/05-EKS-Setup.md
+------------------------------------------------------------------------------
+K8s manifest yml syntax
+====================
+api version:app/v1
+kind:deployment
+metadata:
+ name:javawebappdeployment
+spec:
+replicas:2
+strategy :
+ type:RollingUpdate
+seclector
+
+ 
+
+

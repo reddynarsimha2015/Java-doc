@@ -1,0 +1,478 @@
+JavaScript
+==========
+JS is a programming language. we use it to give insruction to
+computer.
+
+Code Editor
+============
+VS code-->it is free and popular code editor
+
+Varaible and Datatypes
+======================
+1)console.log
+is used to log (print) a message to the console
+
+console.log("i Love JS");
+
+first.js
+========
+console.log("I love JS");
+
+html -->website
+browser connect JS ->html  file we need to use
+html<----->browser(console)
+||
+JS
+index.html
+VS->Shift+!
+<Script src="first.js"></script>
+
+Varaible in jS
+==============
+Varaible are containers for data
+
+age=24;
+price=99.99;
+name="raju";
+x=null;
+y=undefined;
+isFollow=false;
+fullName=24
+
+Dynamically typed langauage
+
+let-cannot be redeclared butcan be updated. A block scope .
+var -can be redeclared & updated it is global scope
+const- cannot redeclared or upated a block scope
+
+Datatype in JS
+==============
+Number,String,Boolea,undefined ,null,BigInt,Symbol
+Primitive(7)
+Number
+String
+Boolean
+undefined
+null
+Symbol
+BigInt
+NonPrimitive
+Objects(Arrays,Functions)
+
+create const object called "product" to store information  
+name-string
+rating-number
+price-number
+offer-number
+isDeal-boolean
+
+
+const productt={
+name:"ipphone",
+rating:4,
+offer:5,
+price:270
+};
+console.log(product)
+---------------------------
+creat const object called profile to store information
+username-String
+isfollow-boolena
+follower-number
+following-number
+-----------------------
+
+
+
+Comments in Js
+==============
+Part of code which is not executed
+
+//this is ssingle line comment
+
+/* This is a multi -line 
+comments.*/
+
+
+Operation in JS
+-----------------
+Arithmetic Operators
+   +,-,*,/
+-Modulus   %
+-Exponentiation  a**b
+Unary operator
+-Increment ++  
+-Decrement  --
+
+Asignment Operator
+--------------------
+= 
++= 
+a+=1//a=a+1
+-=
+a-=1;//a=a-1
+*= 
+a*=2;//a=a*2
+%= 
+a%=2
+**=
+
+Comparation operator
+---------------------
+Eqal to (==)
+Equal to & type (===)
+Not Equal(!=)
+Not Equal & type(!==)
+> , >= , < ,<=
+
+
+Logical Operator
+----------------
+Logical AND  &&
+Logical Or  ||
+Logical Not !
+
+
+Conditional Statement
+=========================
+let age=25;
+
+if(age>18){
+console.log("you an vote");
+}
+else{
+console.log("you an vote");
+}
+
+
+Ternary operator
+
+age>18?"adult":"not adult";
+
+
+switch
+
+MDN
+alert("hello")//one time pop up
+let name=promp("hello")//messag and input take
+console(name);
+
+
+1)get user to input using prompt ("enter a number:") 
+check if the number is multiple of 5 or not??
+
+2)write  acode which can given grades to students according to their score
+80-100 A
+70-89 B
+60-69 c
+50-59 D
+0-49- F
+
+Loop
+
+are used to execute a piece of code again & again
+for loop
+========
+for(let i=1;i<=5;i++){
+console.log("hello");
+}
+
+1)calculate sum of 1 to 5
+
+while loop
+========
+while(condition){
+//do some work
+}
+
+do-while loop
+=============
+do{
+//do some work
+}while(condition)
+
+for-of loop-string or arrays
+==========
+for(let val of strVar){
+//do some work
+}
+for-in loop-objects or arrya
+for(let key in object){
+
+}
+2)print all even numbers from 0 to 100
+for(let num=0;num<=100;num++){
+if(num%2===0){
+console.log("even",num);
+}
+}
+3)Create a game where you start with any random game number.Ask the use to keep guessing the game number until the user ener correct value
+
+let gussnum=19;
+let num=prompt("enter guss number");
+while(gussNum!==num){
+prompt(enter guss number is wrong");
+}
+console.log("congrulation");
+
+-------------------------------------------------
+String in JS
+String is sequeene of character use to represent text
+
+create String
+let str="hello";
+String length
+str.length
+string indices
+str[0],str[1]
+
+String interpolation
+${expression}
+let obj=
+{
+item:"pen",
+price:0,
+}
+let output='The cost of ${obj.item} is ${obj.price} rupess';
+console.log(output);
+
+
+String Method in jS
+Str.toUpperCase()
+str.toLowerCase()
+str.trim()
+Str.slice(start,end?)
+str1.concat(str2)
+str.replace(searchval,newVal)
+Str.charAt(idx);
+
+
+1)prompt the user enter theirr ful name .generate username  based input
+Start username with @ followed fullname and end with with fullname length
+eg user name="raju"
+usernaem=@raju4
+
+let username="@"+fullname+fullName.length;
+----------------------------------------------------------------
+Arrays
+=======
+create Array
+
+let marks=[95,65,48,83,66];
+
+1)given marks student->[95,99,80,60]
+find average marks?
+sum/5
+
+for(let val of marks){
+sum+=val
+}
+let av=sum/marks.length
+console.log('the avg marks =${av}');
+
+Array Method
+============
+push-add to end
+pop-delete from end and return
+toString convert array to string
+concat()
+unshift()-add to start
+shift () delete from start and return
+slice return pices of the array
+splice(startindex,deletcount,new element)
+
+create an array to store companies blomberg,microserof,uber,google,ibm,netflex
+remove first company -pop -end delete shift-start delete
+remove uber ad add ola in place
+splice(2,1,"ola");
+add amzon at end
+-push-end and unsift-first add
+----------------------------------------------------------------
+function and method
+perform specific tsk,can invoked whenever needed
+
+function functionName(){
+//do work
+}
+function call
+functionName()
+
+
+function myfuncion(){
+console.log("welcomeJS clas");
+}
+myfunction()
+
+Arrow function\
+const functname=(a,b)=>{
+console.log(a+b);
+};
+
+1) find number vowels
+count=0;
+for(const char of str){
+if(cha=='a'||cha=='e'||------)
+count++
+}
+}
+2)arrow function  sametask
+onst cont=(Str)->{
+same code above
+}
+forEach loop in Array
+arr.forEach((al)->{
+console.log(val)
+})
+
+--------------------------------
+DOM
+====
+HTML-structure
+CSS-style
+JS-logic
+<style> tag connects  html with CSS
+<sript> tag connect html with JS
+
+readability-seperate js
+modularity-html,css,js
+browser caching-
+
+
+Window Object
+=================
+open window  in browser.It window browser object(not js ) & it automatically created by browser.
+
+it global object 
+
+DOM
+when web page loaded .the browser creates DOM(Document object model)) of page.
+
+window
+docuent
+html
+head    boy
+
+console.dir-document -prop method
+console-log-print
+
+dynamic changes -DOM
+
+manipulation
+
+1)selecting with id
+let h=document.getElementById("heading");
+ console.dir(h);
+2)selecting with class
+let h1=document.getElementsByClassName("heading");
+console.dir(h1);
+
+3)Select  with tag
+let h11=document.getElementsByTagName("p");
+console.dir(h11);
+
+4)Query selector
+
+document.querySelector("myid/myclass/tag");
+//return first element
+5)Query SelectAll
+document.querySelectorAll("myid/myclass/tag");
+//return a nodelist 
+
+properties
+==============
+tagNamereturn tag for element node
+innerText-content display
+h12.innnertext
+innerHTML-Html content
+textContent-
+
+
+
+	body
+div		script
+imag
+h1
+p
+div
+
+1)Attribute
+1)getAttribute(attr)
+let  div =document.querySelecttor("div");
+console.log(div);
+let id=div.getAttribute("id");
+console.log(id);
+-
+2)setAttribute(attr,value)
+
+style
+=====
+node.style
+
+
+Events
+======
+The change in state of  an object is known as an event
+mouse event(click ,double click)
+keyboard event(keypress,keyup,keydown)
+Form events(submit etc) print event & many more)
+
+Event handling in js
+=========================
+node.event=()=>{
+//handle here
+}
+
+
+event Object
+========
+event handler have access to event object's properties and method
+
+node.event=(e)=>{
+//handle here
+}
+
+
+Event Listener
+===============
+node.addEventListener(event,callback)
+
+node.removeEventListener(event,callback)
+
+note the callback reference should be same to remove
+
+
+1)toggle button-->change ark whe clicked and light mode wen click again;
+
+------------------------------------------------------------------
+
+Tic Tac toe
+============
+9boxes
+
+player 1-X
+player 2-0
+wining
+========
+horizontial
+----------->
+0,1,2
+3,4,5
+6,7,8
+vertical
+0 3 6
+1 4 7
+2 5 8
+diagonal 
+0,4,8
+2,4,6
+
+------------------------------------------------------------------
+classes & objects
+=================
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+Stream Api Types
+====================
+a)Intermediate operations:returns stream object as result 
+ 
+b)Terminal Operations:returns non stream object like primitives
+/object not return anything.
+
+Intermediate operations
+a)map()
+b)filter()
+c)distinct()
+d)sorte()
+e)limit()
+f)skip()
+
+Terminal Operations
+a)forEach()
+b)toArray();
+c)reduce
+d)collect
+e)max
+f)min
+g)count
+h)anyMatch
+i)allMatch
+j)noneMatch
+k)findFirst
+l)findAny
+
+
+
+
+

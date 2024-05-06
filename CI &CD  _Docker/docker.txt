@@ -1,0 +1,297 @@
+Docker
+======
+docker is open source platform for development,shipping ad running applications in containers
+
+containers are lightweight ,isolated environments that packages application and their dependencies
+
+benfit of using docker portability,scalability,consitency,and resource efficiency.
+
+
+Application Architecture
+==========================
+
+user-->front end---->backend-->DB
+
+front end angular/react/Js
+
+backend-java/php
+
+db-oracle/mysql
+
+application tech stack
+=========================
+
+frontend angular 13
+
+backend -java 17
+
+db-myql 8.5
+
+Envirommenet setup-to run our application
+=========================================
+1)Take one machine(physical/virtual)
+
+2)install angular 13
+
+3)install java 17v
+
+4)install tomcate server 9.0v
+
+5)install Mysql db server 8.5v
+
+Application environments 
+=======================
+1)dev-developer will use it for integration testing
+
+2)SIT-testing team will use for system integrationtesting
+
+3)UAT-client will use it for aceptance testing 
+
+4)PILOT-pre production environement
+
+5)Prod-live environment(end userss can access our application running in prod)
+
+Install all software in  every enviornment like dev,SIT,UAT,PILOT,prod
+
+challenge in deployment process
+================================
+1)multiple environement setup
+
+2)setting up all required depenencies(software) in all machines
+
+3)version conflicts
+
+4)environment maintainence
+
+5)Environemt issues
+
+-----------------------------------------------------
+Docker
+======
+>it is free and open source software
+
+>it used for containerization
+
+>containerization means packages our application code+required dependencies as single unit for executation
+
+app code
++		=	Docker image---->Dev env
+java17
+tomcate
+mysql
+
+
+running Docker image--->  docker container created-->inside DC application is executed
+
+if we use docker in our project then we can run our project in any system without bothering about underlying softwares.
+
+Docker Architecture
+===================
+1)Docker file-it contains set of instruction to buid dockerr image
+
+2)docker image-it is package which contain codee+dependceies
+
+3)docker registry-it is place where we can store our docker image
+
+4)docker container-when we run docker image then docker container will be created.our application will execued inside docker container.
+
+ 			  build		         push
+app code------>dockerfile-------->docker image----------->Docker hub(registry)(Nexus repository/Jfrog /AWS ECR)
+					|
+                                    run
+					Docker container
+
+
+virtualizaation
+================
+
+My machine-->window os-->docker engine
+
+pull and run docker image-->docker container created.
+
+container-->linux virtul  machine
+
+running one operating system in another operating system is called virtualization
+
+
+with one image we can create any no of container
+
+container means Virtual box
+
+container created based virtualization
+
+
+github.com/ashokitschool/DevOps-Documents/blob/main/Docker-Setup.md
+
+Docker Set up
+===============
+login
+
+create Linux vm and connect to it using Mobaxterm
+
+
+install docker in Amzon linux VM
+
+$sudo yum update -y
+$sudo yum install docker -y
+$sudo service docker start
+
+add ec2-user to dockergroup by executing below command
+sudo usermod -aG docker ec2-user
+
+Restart sesioon
+
+$exit
+
+
+-----------------------------------------------
+Docker commands
+===============
+docker images: to display list of docker images avaiable in our system
+
+docker ps -a: to display list of docker contianers running in our system
+
+docker pull <image-id/image-name>: o download docker image
+
+docker run <image-id/image-name> : to run docker image(conainer creation)
+
+docker rmi <image-id/imagenae> to delete docker image
+
+docker rm <container-id> : remove docker container
+
+docker system prune -a: 
+all stop contianer  /unused images deleted
+
+
+where we find doker images-->dockerhub
+
+
+Docker file
+it contains instructions to build image
+
+we will specify application dependecies heree
+
+docker file keyword
+FROM
+=====
+>IT IS USED to sepecify base image required fo our app
+
+FROM :jdk11
+
+FROM:tomcat8.5
+
+FROM:mysql8.5
+
+MAINTAINER
+==========
+>it is used to specify author of docker file
+MAINTAINER <ytr@gmail.com>
+
+COPY
+====
+copy file from host machine to container machine
+
+COPY target/app.war   /user/app/tomcat/webapp.war
+
+RUN
+===
+It is used to execute instruction while creating docker image
+
+RUN 'sudo yum install git'
+RUN 'sudo yum install maven'
+RUN 'git clone <rep>'
+
+note we can run write multiple RUN instruction in docker file and they will be processed from top to bottom
+
+
+CMD
+====
+>it is used to execute instructions while creating container
+
+
+CMD 'java -jae <JAR-FILE>'
+
+note: if we write multiple cmd instruction docker will process only last CMD instruction.
+		
+
+
+		RUN			CMD	
+dockerfile----------->dockerimage------------------>docker container
+           build			run
+
+
+CMD-->override instruction
+
+
+ENTRYPOINT -->dont want to override then we go ENTRYPOINT
+
+
+EXPOSE
+======
+USED TO SPECIFY CONTAINER PORT NUMBER
+
+EXPOSE 8081
+
+WORKDIR
+=========
+SPECIFY WORKING DIRECTORY(PATH CHANGE)
+
+WORKDIR /USR/APP/
+--------------------------------------------------
+ls -l
+vi Dockerfile
+from ubuntu
+Maintaainer <ASHOK>
+
+Run echo 'run msg -1'
+
+Run echo' run msg -2'
+
+CMD echo 'cmd msg -1'
+
+CMD 'echo 'cmd msg -2'
+
+:wq
+---------------------------
+cat Dockerfile
+clear
+ls -l
+docker build  -t app1 . 
+change file name
+docker build -t app2 -f Dockerfile .
+
+docker images
+
+
+docker run app2
+cmd msg-1 eecu
+docker ps
+docker ps -a(stop container)
+docker system prune -a(unused and sstopcontainer deleted)
+push image into docker hub
+docker login
+username
+password
+docker push ashokit/app201
+
+
+----------------------------------------
+docker for apring boot app
+FROM OPENJDK:11
+
+COPY TARGET/WEBAPP.JAR /USER/APP/
+
+WORKDIR/USER/APP/
+EXPOSE 8080
+
+ENTRRYPOINT ["JAVA","-jar","webap.jar"]
+
+--------------------------------------------
+
+sudo yum install git
+sudo yum install maven
+
+
+----------------------------------------------------
+
+

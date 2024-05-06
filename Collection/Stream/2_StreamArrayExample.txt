@@ -1,0 +1,32 @@
+Stream API divide into 3 parts
+Arrays-->Stream-->operations
+List/Set-->Stream-->Operations
+Map-->Stream-->Operation
+-----------------------------------------
+How to convert Arrays 2 stream
+1)Array Length?
+2)Array iterating?
+3)Array Sorting?
+Arrays.Stream(a).sorted().forEach(c->Sysout(c));
+4)Remove duplicates from Arrays by stream api
+Arrays.stream(a).distinct().forEach();
+5)Array sum
+int sum=Arrays.stream(a).sum();
+6)array average
+OptionalDouble avg=Arrays.stream(a).average();
+Sysout(avg.getAsDouble());
+7)Display Even number from Arrays
+Arrays.stream(a).filter(x->x%2==0).forEach()
+8)min
+int min=Arrays.stream(a).min().getAsInt();
+int max=Arrays.stream(a).max().getAsInt();
+
+Stream api divide into 2 type
+
+sequential Stream--Arrays.stream() or  collectionobj.stream() we will create sequential stream
+isParallel()-boolean value-true->parallel
+			   false->sequiential
+parallelStream- stream divide into  substream and  processed parallel to improve performance
+boolean flag=Arrays.stream(a).parallel().isParallel();
+
+---------------------------------------------------------------------------------------
