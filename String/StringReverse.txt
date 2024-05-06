@@ -1,0 +1,84 @@
+1)How to reverse String in Java
+There are many ways to reverse String in Java. 
+1)StringBuffer reverse method 
+String s="raju"
+StringBuffer s1=new StringBuffer(s);
+String srev=s1.reverse().toString();
+o/p ujar
+2)StringBuilder reverse method
+String s="raju"
+StringBuilder s1=new StringBuilder(s);
+String srev=s1.reverse().toString();
+o/p ujar
+3)StringFormatter reverseString method
+StringFormatter.reverseString("my name is Raju");
+3)Iterating process 
+Write program without using reverse method?
+Example
+String name="Raju";4
+1)find length of string
+int length =str.length();//4
+2)String stored  data based index
+index start from 0 
+r a j u
+0 1 2 3
+3)we convert string charrarry-which convert string to char[]
+ch[] charr=s.toCharArray();
+ch[3]=u
+ch[2]=j
+ch[1]=a
+ch[0]=r
+4)iterating  
+for(int i=char.lengh-1;i>=0;i--)
+sysout(charr[i));
+}
+2) process charAt
+for(int i=str.lengh-1;i>=0;i--)
+sysout(str.charAt[i]);
+}
+
+
+o/p ujar
+
+
+
+2)  How to check Palindrome String in java?
+The output of reverse of input String equal to input of string then we can Palindrome.
+Input –nitin
+Output-nitin
+
+Logic
+
+String input=”nitin”;
+StringBuffer b=new StringBuffer(s);
+String output =b.reverse().toString();
+If(input.equals(output)
+Palindrome
+Else
+Not palindrome
+----------------------------------------------------------------
+
+
+3) Difference between String and String Buffer
+
+No.	String	StringBuffer
+1)	The String class is immutable.	The StringBuffer class is mutable.
+2)	String is slow and consumes more memory when we concatenate too many strings because every time it creates new instance.	StringBuffer is fast and consumes less memory when we concatenate t strings.
+3)	String class overrides the equals() method of Object class. So you can compare the contents of two strings by equals() method.	StringBuffer class doesn't override the equals() method of Object class.
+4)	String class is slower while performing concatenation operation.	StringBuffer class is faster while performing concatenation operation.
+5)	String class uses String constant pool.	StringBuffer uses Heap memory
+		
+
+
+
+4) Difference between StringBuffer and StringBuilder?
+
+No.	StringBuffer	StringBuilder
+1)	StringBuffer is synchronized i.e. thread safe. It means two threads can't call the methods of StringBuffer simultaneously.	StringBuilder is non-synchronized i.e. not thread safe. It means two threads can call the methods of StringBuilder simultaneously.
+2)	StringBuffer is less efficient than StringBuilder.	StringBuilder is more efficient than StringBuffer.
+3)	StringBuffer was introduced in Java 1.0	StringBuilder was introduced in Java 1.5
+
+
+
+
+
