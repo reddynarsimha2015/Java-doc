@@ -1,0 +1,44 @@
+ 1  whoami
+ 2  clear
+ 3  docker -v
+===============================
+dcker install steps Amzon linux
+==============================
+ 4  sudo yum update -y
+ 5  sudo yum install docker -y
+ 6  docker -v
+ 7  sudo service docker start
+ 8  sudo usermod -aG docker ec2-user
+ 9  exit
+ 10  docker -v
+ 11  docker info
+ 12  docker images
+ 13  docker ps
+ 14  docker ps -a
+ 15  java -version
+=============================
+install git & maven
+==============================
+ 16  sudo yum install git
+ 17  sudo yum install maven
+ 18  git --version
+ 19  mvn -version
+ 20  clear
+ 21  ls -l
+ 22  git clone https://github.com/reddynarsimha2015/SpringBootDockerApp.git
+ 23  cd SpringBootDockerApp
+ 24  mvn clean package
+ 25  cd target
+ 26  vi dockerfile
+ 27  docker images
+ 28  docker build -t sbapp .
+ 29  docker run -d -p 8080:8080 sbapp
+ 30  docker ps
+ 31  docker ps -a
+ 32  history
+ 33  rm -rf SpringBootDockerApp
+34   docker stop containername
+35   docker rm containername
+36   docker image rm imagename
+
+==================================================

@@ -1,0 +1,73 @@
+What Docker?
+>it is free and open source software
+
+>Docker is containerization platform 
+
+>containerization means packages our application code+required dependencies as single unit for execution.
+
+>Deployement into multiplr environemnts will become easy if we use docker container concept
+
+Advantages Going docker
+=========================
+if you want to run application 
+
+For example if you take a spring boot application in order torun that spring boot application we need java 
+softwareif want to use a database for our application then we need java +databaseis need to run our application
+
+whenever we develop our application directly we cannot give  to the client for execution we nee test application 
+in multiple environment then only we will give to client
+So we going to test in the dev,test,uat and prod.when we test our application in multiple environement
+what about software required to run Java+Mysql in all machines.that will take alot time.
+
+To reduce that problem we going to use Docker containers here when we go for Docker containersour application 
+will execute inside container and that docker software take care of all required software those are called
+as dependencies of application
+Torun application we need java ,java is dependent for spring boot application
+if you have database  will db will dependency for our application instead of we 
+ae installing all the dependencies in all machines we are going to use Docker
+Docker will provide the infrastructure to run our applicationeasily in any platform
+ in any machine that why docker is called docker trending in market
+
+How dockerize aplication
+========================
+1)Docker file-it contains set of instruction to buid dockerr image
+
+2)docker image-it is package which contain codee+dependceies
+
+3)docker registry-it is place where we can store our docker image
+
+4)docker container-when we run docker image then docker container will be created.our application will executed inside docker container.
+
+Docker Set up
+===============
+1)create Linux vm and connect to it using Mobaxterm
+
+install docker in Amzon linux VM
+
+$sudo yum update -y
+$sudo yum install docker -y
+$sudo service docker start
+
+add ec2-user to dockergroup by executing below command
+sudo usermod -aG docker ec2-user
+
+Restart sesioon
+
+$exit
+--------------------------------------------------------------------------------------------
+
+Spring Boot App with Docker
+
+create spring boot application
+
+Package Booot ap using mvn clean package'
+
+write docker file to build docker image
+
+create docker image using Dockerfile
+
+run dockerimage(it will create container)
+
+access appliction in browser
+-----------------------------------------------------------------------------------------
+
