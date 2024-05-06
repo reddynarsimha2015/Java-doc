@@ -1,0 +1,195 @@
+				Singleton Design Pattern
+Singleton Definition
+For any java class if we are allow to create only one object  such type of class is said to be singleton class
+Advantage of Singleton class : 
+The main advantages of singleton  classes are Performance will be improved and memory utilization will be improved
+Example-
+DB class and Config Object
+create DB config object once and use that object multiple time then we use concept called Singleton design pattern
+Example
+class SingletonExample{
+//global initailization
+static SingletonExample s=new SingletonExample();
+private SingletonExample(){
+}
+static SingletonExample  getInstance(){
+return s;
+}
+}
+
+Step1 -problem  earily initalization
+Global initalization-we create static instance class object inside of class  at classlevel .The class object load at time of classloading time then it is called earily Initalization.
+Whenever we not  calling getInstance static method also  instance static class object  loaded  at time class loading.They no use of create object at time classloading time
+To avoid problem
+1) global static reference initailize with null;
+2)create object inside the static getinstance method
+Example
+class SingletonExample{
+//global initailization
+static SingletonExample s=null
+private SingletonExample(){
+}
+static SingletonExample  getInstance(){
+if(s==null)
+s=new SingletonExample ();
+return s;
+}
+}
+Above example is called lazy inialization.whenever we call getInstance  method that time object  created .
+
+Step2-problem   with inheritance
+Here we can change object of classes  ,due to the  class inherited in another class 
+To avoid  this problem make class as final ,therefore the class cannot be inherited another classs
+Excample
+final public class SingletonExample{
+//global initailization with null
+static SingletonExample s=null
+private SingletonExample(){
+}
+static SingletonExample  getInstance(){
+if(s==null)
+s=new SingletonExample ();
+return s;
+}
+}
+Step3-problem   with Reflection
+Reflection  api we can call private method,private constructor outside classs there it breaks 
+SingletonDesign  pattern
+Example
+Constructor<SingletonDemo> ss = SingletonDemo.class.getDeclaredConstructor();
+ss.setAccessible(true);
+SingletonDemo s3 = ss.newInstance();
+System.out.println(s3.hashCode());
+To avoid this problem
+create instance block  with check instance  object is present or not.if present throw exception that already the object created.
+Example
+final public class SingletonExample{
+//global initailization with null
+static SingletonExample s=null
+private SingletonExample()throw Exception{
+}
+{
+if(s!=null)
+throw new Exception("object already created");
+}
+static SingletonExample  getInstance()throw Exception{
+if(s==null)
+s=new SingletonExample ();
+return s;
+}
+}
+
+Why  we create condition  instance block instead creating condition in  constructor?
+Because when class have multiple construction we need write condition every time  in consturctor(duplication).To avoid writing condion multiple time in multiple constructor in clas ,just  keep thatcommon  condition in the instance block and  we can use mutiple constructor
+Step3-problem   with  cloning
+class should implment cloneable and override the clone method to avoid cloning  problem
+Example
+Test
+//cloning
+SingletonDemo s4 = (SingletonDemo) s3.clone();
+System.out.println(s4.hashCode());
+to avoid above problem  we override clone method and implements cloneable interface
+final public class SingletonExample implements cloneable{
+//global initailization with null
+static SingletonExample s=null
+private SingletonExample()throw Exception{
+}
+static SingletonExample  getInstance()throw Exception{
+if(s==null)
+s=new SingletonExample ();
+return s;
+}
+@Override
+public Object clone(){
+return s;
+}
+}
+Step4-problem   with  Deserilization
+When we desialization new object created that which break the singletn Design pattern
+to avoid this problem we going override 
+Example
+Test
+//Deserialization
+//serializaion-convert object into bytes send over the network
+		FileOutputStream fos = new FileOutputStream("F:\\demo.txt");
+		ObjectOutputStream o = new ObjectOutputStream(fos);
+		o.writeObject(s);
+//deseralization
+		FileInputStream fis = new FileInputStream("F:\\demo.txt");
+		ObjectInputStream i = new ObjectInputStream(fis);
+		SingletonDemo s3 = (SingletonDemo) i.readObject();
+		System.out.println(s3.hashCode());
+To avoid this problem we override readSolve method.
+final public class SingletonExample  extends Thread implements cloneable,Serilizable{
+//global initailization with null
+static SingletonExample s=null
+private SingletonExample()throw Exception{
+}
+static SingletonExample  getInstance()throw Exception{
+if(s==null)
+s=new SingletonExample ();
+return s;
+}
+@Override
+public Object clone(){
+return s;
+}
+@Override
+public Object readResolve(){
+return s;
+}
+}
+Step5-problem   with  Multithread
+final public class SingletonExample implements cloneable,Serilizable{
+//global initailization with null
+static SingletonExample s=null
+private SingletonExample()throw Exception{
+}
+static SingletonExample  getInstance()throw Exception{
+if(s==null)
+s=new SingletonExample ();
+return s;
+}
+@Override
+public Object clone(){
+return s;
+}
+@Override
+public Object readResolve(){
+return s;
+}
+public void run() {
+	try {
+			SingletonDemo s5 = SingletonDemo.getInstance();
+			System.out.println(s5.hashCode());
+		} catch (Exception e) {
+			System.out.println(e);
+
+		}
+	}
+public static void main(String[] args){
+SingletonExample  s=new SingletonExample ();
+s.start();
+SingletonExample  s1=new SingletonExample ();
+s1.start();
+}
+}
+Here two thread run  parallel therefore it create new object for two threads.
+To avoid this problem we going use synchronize block  and double check mechanism to avoid Singleton Design Pattern
+static SingletonDemo getInstance() throws Exception {
+
+		if (s == null) {
+			synchronized (SingletonDemo.class) {
+				if (s == null)
+					s = new SingletonDemo();
+			}
+		}
+
+		return s;
+	}
+This complete concept Singleton Design pattern.
+------------------------------------------------------------------------------------------------
+
+
+
+
